@@ -49,13 +49,11 @@ for line in logo.splitlines():
 while True:
     print("\033[0m")  # Reset color
     print("1. IP Lookup")
-    print("2. OSINT Face Picture")
-    print("3. Camera Capture Server")
-    print("4. Location Server")
-    print("5. Voice Recorder Server")
-    print("6. Image Metadata Extractor (GPS)")
-    print("7. Username OSINT (30+ sites)")
-    print("8. Exit")
+    print("2. Camera Capture Server")
+    print("3. Location Server")
+    print("4. Voice Recorder Server")
+    print("5. Username OSINT (30+ sites)")
+    print("6. Exit")
     choice = input("Select an option: ")
     if choice == '1':
         ip = input("Enter Your IP: ")
@@ -70,16 +68,12 @@ while True:
         print("ISP:", data.get("isp"))
         print("Status:", data.get("status"))
     elif choice == '2':
-        os.system('python face.py')
-    elif choice == '3':
         os.system('python camera_server.py')
-    elif choice == '4':
+    elif choice == '3':
         os.system('python location_server.py')
-    elif choice == '5':
+    elif choice == '4':
         os.system('python voice_server.py')
-    elif choice == '6':
-        os.system('python metadata.py')
-    elif choice == '7':
+    elif choice == '5':
         os.system('python username_osint.py')
-    elif choice == '8':
+    elif choice == '6':
         break
