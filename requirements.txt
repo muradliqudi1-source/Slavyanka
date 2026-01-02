@@ -3,4 +3,3 @@ requests
 colorama
 flask
 pyngrok
-Pillow
